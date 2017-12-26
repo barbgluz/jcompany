@@ -27,64 +27,55 @@ var app = {
     onDeviceReady: function() {
         let hamburger = document.getElementById('app-hamburger-btn');
         let close = document.getElementById('app-close-btn');
-        let institution = document.getElementById('institution');
-        let system = document.getElementById('institution');
-        let config = document.getElementById('config');
+        let institution = document.getElementById('app-institution-btn');
+        let system = document.getElementById('app-system-btn');
+        let config = document.getElementById('app-config-btn');
 
-        hamburger.addEventListener("click", this.openMenu, false);
-        close.addEventListener("click", this.closeMenu, false);   
-        institution.addEventListener("click", this.changeToInstitution, false);
-        system.addEventListener("click", this.changeToSystem, false);
-        config.addEventListener("click", this.changeToConfig, false);
+        hamburger.addEventListener("click", openMenu, false);
+        close.addEventListener("click", closeMenu, false);   
+        institution.addEventListener("click", changeToInstitution, false);
+        system.addEventListener("click", changeToSystem, false);
+        config.addEventListener("click", changeToConfig, false);
     },
-
-    openMenu: function() {
-        let menu = document.getElementById('app-side-menu');
-        menu.style.width = "75%";
-        menu.style.boxShadow = "-6px 0px 6px 6px rgba(0,0,0,0.75)";
-    },
-
-    closeMenu: function() {
-        let menu = document.getElementById('app-side-menu');
-        menu.style.width = "0px";
-        menu.style.boxShadow = "none";
-    },
-
-    changeToInstitution: function() {
-        let institution = document.getElementById('institution');
-        let system = document.getElementById('system');
-        let config = document.getElementById('config');
-        let title = document.getElementById('app-page');
-
-        system.style.display = "none";
-        config.style.display = "none";
-        institution.style.display = "block";
-        title.innerHTML = "Institucional";
-    },
-
-    changeToSystem: function() {
-        let institution = document.getElementById('institution');
-        let system = document.getElementById('system');
-        let config = document.getElementById('config');
-        let title = document.getElementById('app-page');
-
-        institution.style.display = "none";
-        config.style.display = "none";
-        system.style.display = "block";
-        title.innerHTML = "Sistema";
-    },
-
-    changeToConfig: function() {
-        let institution = document.getElementById('institution');
-        let system = document.getElementById('system');
-        let config = document.getElementById('config');
-        let title = document.getElementById('app-page');
-        
-        institution.style.display = "none";
-        system.style.display = "none";
-        config.style.display = "block";
-        title.innerHTML = "Configuração";
-    }
 };
 
 app.initialize();
+var menu = document.getElementById('app-side-menu');
+var institution = document.getElementById('institution');
+var system = document.getElementById('system');
+var config = document.getElementById('config');
+var title = document.getElementById('app-page');
+
+function closeMenu() {
+    menu.style.width = "0px";
+    menu.style.boxShadow = "none";
+}
+
+function openMenu() {
+    menu.style.width = "75%";
+    menu.style.boxShadow = "-6px 0px 6px 6px rgba(0,0,0,0.75)";
+}
+
+function changeToInstitution() {
+    system.style.display = "none";
+    config.style.display = "none";
+    institution.style.display = "block";
+    title.innerHTML = "Institucional";
+    closeMenu();        
+}
+
+function changeToSystem() {
+    institution.style.display = "none";
+    config.style.display = "none";
+    system.style.display = "block";
+    title.innerHTML = "Sistema";
+    closeMenu();
+}
+
+function changeToConfig() {
+    institution.style.display = "none";
+    system.style.display = "none";
+    config.style.display = "block";
+    title.innerHTML = "Configuração";
+    closeMenu();
+}
