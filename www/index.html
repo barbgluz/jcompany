@@ -28,7 +28,7 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; media-src *; img-src 'self' data: content:;">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
@@ -36,13 +36,29 @@
         <title>Hello World</title>
     </head>
     <body>
-        <div class="app">
-            <h1>Apache Cordova</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
+        <header>
+            <div id="app-hamburger-btn" class="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
             </div>
-        </div>
+            <h1 id="app-page" class="title">Institucional</h1>
+        </header>
+        <aside id="app-side-menu" class="sidemenu">
+          <a id="app-close-btn" href="#" class="closebtn">&times;</a>
+          <a id="app-institution-btn" href="#">Institucional</a>
+          <a id="app-system-btn" href="#">Sistema</a>
+          <a id="app-config-btn" href="#">Configuração</a>
+        </aside>
+        <section id="institution">
+            Lorem intitutiosum intitutiosum intitutiosum intitutiosum intitutiosum intitutiosum intitutiosum intitutiosum intitutiosumintitutiosum intitutiosum intitutiosum intitutiosum intitutiosum intitutiosum intitutiosum intitutiosum intitutiosum intitutiosum intitutiosum intitutiosum!
+        </section>
+        <section id="system">
+            Lorem systesum systesum systesum systesum systesum systesum systesum systesum systesum systesum systesum systesum systesum systesum systesum systesum systesum systesumsystesum systesum systesum systesum systesum systesum systesum systesum systesum systesum systesum systesumsystesum systesum systesum!
+        </section>
+        <section id="config">
+            Lorem configsum configsum configsum configsum configsum configsum configsum configsum configsumconfigsum configsum configsumconfigsum configsum configsumconfigsum configsum configsumconfigsum configsum configsum configsum configsum configsum!
+        </section>  
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
     </body>

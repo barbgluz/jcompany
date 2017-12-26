@@ -16,6 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -23,23 +24,66 @@ var app = {
     },
 
     // deviceready Event Handler
-    //
-    // Bind any cordova events here. Common events are:
-    // 'pause', 'resume', etc.
     onDeviceReady: function() {
-        this.receivedEvent('deviceready');
+        let hamburger = document.getElementById('app-hamburger-btn');
+        let close = document.getElementById('app-close-btn');
+        let institution = document.getElementById('institution');
+        let system = document.getElementById('institution');
+        let config = document.getElementById('config');
+
+        hamburger.addEventListener("click", this.openMenu, false);
+        close.addEventListener("click", this.closeMenu, false);   
+        institution.addEventListener("click", this.changeToInstitution, false);
+        system.addEventListener("click", this.changeToSystem, false);
+        config.addEventListener("click", this.changeToConfig, false);
     },
 
-    // Update DOM on a Received Event
-    receivedEvent: function(id) {
-        var parentElement = document.getElementById(id);
-        var listeningElement = parentElement.querySelector('.listening');
-        var receivedElement = parentElement.querySelector('.received');
+    openMenu: function() {
+        let menu = document.getElementById('app-side-menu');
+        menu.style.width = "75%";
+        menu.style.boxShadow = "-6px 0px 6px 6px rgba(0,0,0,0.75)";
+    },
 
-        listeningElement.setAttribute('style', 'display:none;');
-        receivedElement.setAttribute('style', 'display:block;');
+    closeMenu: function() {
+        let menu = document.getElementById('app-side-menu');
+        menu.style.width = "0px";
+        menu.style.boxShadow = "none";
+    },
 
-        console.log('Received Event: ' + id);
+    changeToInstitution: function() {
+        let institution = document.getElementById('institution');
+        let system = document.getElementById('system');
+        let config = document.getElementById('config');
+        let title = document.getElementById('app-page');
+
+        system.style.display = "none";
+        config.style.display = "none";
+        institution.style.display = "block";
+        title.innerHTML = "Institucional";
+    },
+
+    changeToSystem: function() {
+        let institution = document.getElementById('institution');
+        let system = document.getElementById('system');
+        let config = document.getElementById('config');
+        let title = document.getElementById('app-page');
+
+        institution.style.display = "none";
+        config.style.display = "none";
+        system.style.display = "block";
+        title.innerHTML = "Sistema";
+    },
+
+    changeToConfig: function() {
+        let institution = document.getElementById('institution');
+        let system = document.getElementById('system');
+        let config = document.getElementById('config');
+        let title = document.getElementById('app-page');
+        
+        institution.style.display = "none";
+        system.style.display = "none";
+        config.style.display = "block";
+        title.innerHTML = "Configuração";
     }
 };
 
