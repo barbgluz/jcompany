@@ -42,9 +42,18 @@ var app = {
 app.initialize();
 var menu = document.getElementById('app-side-menu');
 var institution = document.getElementById('institution');
+
 var system = document.getElementById('system');
 var config = document.getElementById('config');
 var title = document.getElementById('app-page');
+
+var institutionBtn = document.getElementById('app-institution-btn');
+var systemBtn = document.getElementById('app-system-btn');
+var configBtn = document.getElementById('app-config-btn');
+
+var institutionImg = document.getElementById('app-institution-img');
+var systemImg = document.getElementById('app-system-img');
+var configImg = document.getElementById('app-config-img');
 
 function closeMenu() {
     menu.style.width = "0px";
@@ -57,6 +66,9 @@ function openMenu() {
 }
 
 function changeToInstitution() {
+    systemBtn.setAttribute("class", "");
+    configBtn.setAttribute("class", "");
+    institutionBtn.setAttribute("class", "active");
     system.style.display = "none";
     config.style.display = "none";
     institution.style.display = "block";
@@ -65,6 +77,9 @@ function changeToInstitution() {
 }
 
 function changeToSystem() {
+    institutionBtn.setAttribute("class", "");
+    configBtn.setAttribute("class", "");
+    systemBtn.setAttribute("class", "active");
     institution.style.display = "none";
     config.style.display = "none";
     system.style.display = "block";
@@ -73,6 +88,9 @@ function changeToSystem() {
 }
 
 function changeToConfig() {
+    institutionBtn.setAttribute("class", "");
+    systemBtn.setAttribute("class", "");
+    configBtn.setAttribute("class", "active");
     institution.style.display = "none";
     system.style.display = "none";
     config.style.display = "block";
