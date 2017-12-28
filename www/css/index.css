@@ -24,24 +24,37 @@
     padding: 0px;
 }
 
+html {
+    height: 100vh;
+}
+
 body {
     -webkit-touch-callout: none;                /* prevent callout to copy image, etc when tap to hold */
     -webkit-text-size-adjust: none;             /* prevent webkit from resizing text to fit */
     -webkit-user-select: none;                  /* prevent copy paste, to allow, change 'none' to 'text' */
     background-color: white;
+    color: gray;
     font-family:'Work Sans', 'Century Gothic', CenturyGothic, AppleGothic, Arial, sans-serif;
-    font-size:10px;
-    height:100%;
-    width:100%;
+    font-size: 10px;
+    height: 100vh;
+    width: 100%;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #1f1f1f;
 }
 
 header {
-    background-color: white;
+    background-color: #014989;
     -webkit-box-shadow: 0px -6px 6px 6px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px -6px 6px 6px rgba(0,0,0,0.75);
     box-shadow: 0px -6px 6px 6px rgba(0,0,0,0.75);
     height: 55px;
+    left: 0px;
+    position: fixed;
+    top: 0px;
     width: 100%;
+    z-index: 1;
 }
 
 header > * {
@@ -56,7 +69,7 @@ header > * {
 }
 
 .hamburger > * {
-    background-color: gray;
+    background-color: white;
     border-radius: 1px;
     width: 100%;
     height: 3px;
@@ -67,43 +80,63 @@ header > * {
 }
 
 .title {
-    color: gray;
+    color: white;
     height: 100%;
     padding: 15px 0px 15px 0px;
 }
 
 .sidemenu {
+    background-color: rgba(0,0,0,0.2);
+    display: none;
+    height: 100%;
+    left: 0px;
+    opacity: 0;
+    position: fixed;
+    transition: opacity 0.5s;
+    top: 0px;
+    width: 100%;
+    z-index: 2;
+}
+
+.sidemenu-content {
     background-color: white;
     height: 100%;
     left: 0px;
     overflow-x: hidden;
-    padding-top: 60px;
+    padding-top: 55px;
     position: fixed;
     top: 0px;
-    transition: 0.5s;
     width: 0px;
-    z-index: 1;
+    z-index: 3;
 }
 
-.sidemenu a:not(:first-child) {
+.sidemenu-content a:not(:first-child) {
+    align-items: center;
+    color: gray;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    font-size: 16px;
+    min-width: 170px;
     padding: 15px 8px 15px 32px;
     text-decoration: none;
-    min-width: 170px;
-    font-size: 16px;
-    color: gray;
-    display: block;
+}
+
+.sidemenu-content a span {
+    margin-left: 8px;
 }
 
 .active {
     background-color: lightgray;
 }
 
-.sidemenu .closebtn {
+.sidemenu-content .closebtn {
     color: gray;
     font-size: 36px;
     font-weight: bold;
+    height: 45px;
     margin-left: 50px;
-    padding: 0px 10px 10px 10px;
+    padding: 0px 10px;
     position: absolute;
     right: 10px;
     text-decoration: none;
@@ -111,12 +144,190 @@ header > * {
 }
 
 section {
-    font-size: 16px;
-    height: 100%;
-    padding: 10px;
+    font-size: 14px;
+    max-height: 100vh;
+    height: 100vh;
+    min-height: 100vh;
+    overflow-y: auto;
+    padding: 75px 20px 20px 20px;
+    width: 100%;
+}
+
+#institution {
+    position: relative;
+    padding-top: 180px;
+}
+
+#institution-img {
+    -webkit-background-size: cover;
+    align-items: center;
+    background-attachment: fixed;
+    background-image: url(../img/img4.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    height: 105px;
+    justify-content: center;
+    left: 0px;
+    position: absolute;
+    top: 55px;
+    width: 100%;
+    z-index: -1;
+}
+
+#institution-img span {
+    text-shadow: 0px 0px 11px rgba(0, 0, 0, 0.5);
+    font-size: 2.5em;
+    color: white;
+}
+
+.institution-topic  {
+    align-items: center;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    margin: 15px 0 5px 0px;
+    padding-bottom: 3px;
+}
+
+.institution-topic h2 {
+    font-size: 1em;
+    margin-left: 10px;
+    text-transform: uppercase;
+}
+
+.gradient {
+    background: linear-gradient(to right, #014989, #31b0d5);
+    bottom: 0px;
+    height: 1px;
+    left: 0px;
+    position: absolute;
     width: 100%;
 }
 
 #system, #config {
     display: none;
+}
+
+#system {
+    padding: 55px 0px 0px 0px !important;
+}
+
+.load-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.load {
+    background-image: url(../img/clock.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-background-size: contain;
+    background-size: contain;
+    width: 50px;
+    height: 50px;
+    -webkit-animation: rotation 1.5s infinite;
+    animation: rotation 1.5s infinite;
+}
+
+@-webkit-keyframes rotation {
+    from   {-webkit-transform: rotate(0deg);}
+    to {-webkit-transform: rotate(360deg);}
+}
+
+@keyframes rotation {
+    from   {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}
+
+#app-frame {
+    height: 100%;
+    width: 100%;
+    display: none;
+}
+
+.group {
+  margin-top: 35px;
+  position: relative;
+  width: 100%;
+}
+
+.input {
+    border: none;
+    border-bottom: 1px solid lightgray;
+    display: block;
+    padding: 10px 10px 10px 5px;
+    width: 100%;
+}
+
+.input:focus {
+  outline: none;
+}
+
+.input:focus ~ label, .input:valid ~ label {
+  top: -20px;
+  font-size: 14px;
+  color: #1f1f1f;
+}
+
+label {
+  color: gray;
+  font-size: 14px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 5px;
+  transition: 0.4s ease all;
+  -moz-transition: 0.4s ease all;
+  -webkit-transition: 0.4s ease all;
+}
+
+.bar {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+.bar:before, .bar:after {
+  content: '';
+  height: 2px;
+  width: 0px;
+  bottom: 0px;
+  position: absolute;
+  background: #014989;
+  transition: 0.4s ease all;
+  -moz-transition: 0.4s ease all;
+  -webkit-transition: 0.4s ease all;
+}
+
+.bar:before {
+  left: 50%;
+}
+
+.bar:after {
+  right: 50%;
+}
+
+.input:focus ~ .bar:before, .input:focus ~ .bar:after {
+  width: 50%;
+}
+
+#config a {
+    background-color: lightgray;
+    border-radius: 1px;
+    color: #014989;
+    display: block;
+    margin-top: 35px;
+    padding: 15px;
+    text-align: center;
+    text-decoration: none;
+    width: 100%;
 }

@@ -28,7 +28,7 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; media-src *; img-src 'self' data: content:;">
+        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: http://sgloc.com.br/ http://www.jcompanyti.com.br/ 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; media-src *; img-src 'self' data: content:;">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
@@ -44,20 +44,33 @@
             </div>
             <h1 id="app-page" class="title">Institucional</h1>
         </header>
-        <aside id="app-side-menu" class="sidemenu">
-          <a id="app-close-btn" href="#" class="closebtn">&times;</a>
-          <a id="app-institution-btn" class="active" href="#"><img id="app-institution-img" src="img/building.svg" width="15" height="15" alt="I"> Institucional</a>
-          <a id="app-system-btn" href="#"><img id="app-system-img" src="img/computer.svg" width="15" height="15" alt="S"> Sistema</a>
-          <a id="app-config-btn" href="#"><img id="app-config-img" src="img/gear.svg" width="15" height="15" alt="C"> Configuração</a>
-        </aside>
+        <div id="app-side-menu-background" class="sidemenu">
+            <aside id="app-side-menu" class="sidemenu-content">
+              <a id="app-close-btn" href="#" class="closebtn">&times;</a>
+              <a id="app-institution-btn" class="active" href="#"><img id="app-institution-img" src="img/building.svg" width="15" height="15" alt="I"><span> Institucional</span></a>
+              <a id="app-system-btn" href="#"><img id="app-system-img" src="img/computer.svg" width="15" height="15" alt="S"><span> Sistema</span></a>
+              <a id="app-config-btn" href="#"><img id="app-config-img" src="img/gear.svg" width="15" height="15" alt="C"><span> Configuração</span></a>
+            </aside>
+        </div>
         <section id="institution">
-            Lorem intitutiosum intitutiosum intitutiosum intitutiosum intitutiosum intitutiosum intitutiosum intitutiosum intitutiosumintitutiosum intitutiosum intitutiosum intitutiosum intitutiosum intitutiosum intitutiosum intitutiosum intitutiosum intitutiosum intitutiosum intitutiosum!
+            <div id="institution-img"><span>JCompany</span></div>
+            <div class="institution-topic"><img src="img/users.svg" width="15" height="15" alt="S"><h2>Sobre a empresa</h2><div class="gradient"></div></div>
+            <p>Um empresa jovem, que busca oferecer da melhor forma possível os serviços a que se propõe. Contamos com uma equipe unida e experiente, que traz sempre o melhor de tecnologia e inovação ao mercado e seus clientes. Sistemas de gestão empresarial são os nossos principais produtos. Aliado a cada um deles, oferecemos total suporte para que o cliente obtenha sucesso na gestão de seu negócio.</p>
+            <p>Atualmente contamos com mais de 200 clientes ativos espalhados por todo Brasil.</p>
+            <div class="institution-topic"><img src="img/support.svg" width="15" height="15" alt="S"><h2>Serviços</h2><div class="gradient"></div></div>
+            <p>Sistemas de gestão empresarial é o nosso ramo. O principal deles e a mais de 20 anos no mercado, é o SGLOC - Sistema Gerencial para Locadoras de Veículos. Software de ponta que se atualiza constantemente para atender as mudanças do segmento. Dentre outros temos sistemas para Gerenciamentos de Operações de Factoring e Vendas de Loteamentos. Oferecemos suporte e treinamento imediato na contratação e Atendimento Online para quaisquer dúvidas.</p>
         </section>
         <section id="system">
-            Lorem systesum systesum systesum systesum systesum systesum systesum systesum systesum systesum systesum systesum systesum systesum systesum systesum systesum systesumsystesum systesum systesum systesum systesum systesum systesum systesum systesum systesum systesum systesumsystesum systesum systesum!
+            <div id="app-loading" class="load-container"><div class="load"></div><span>Carregando...</span></div>
+            <iframe id="app-frame" src="" frameborder="0"></iframe>
         </section>
         <section id="config">
-            Lorem configsum configsum configsum configsum configsum configsum configsum configsum configsumconfigsum configsum configsumconfigsum configsum configsumconfigsum configsum configsumconfigsum configsum configsum configsum configsum configsum!
+            <div class="group">      
+                <input id="app-link-config-input" type="text" class="input" required>
+                <span class="bar"></span>
+                <label>Insira uma URL</label>
+            </div>
+            <a id="app-link-config-btn" href="#">Salvar</a>
         </section>  
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
