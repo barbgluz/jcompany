@@ -44,14 +44,13 @@
             </div>
             <h1 id="app-page" class="title">Institucional</h1>
         </header>
-        <div id="app-side-menu-background" class="sidemenu">
-            <aside id="app-side-menu" class="sidemenu-content">
-              <a id="app-close-btn" href="#" class="closebtn">&times;</a>
-              <a id="app-institution-btn" class="active" href="#"><img id="app-institution-img" src="img/building.svg" width="15" height="15" alt="I"><span> Institucional</span></a>
-              <a id="app-system-btn" href="#"><img id="app-system-img" src="img/computer.svg" width="15" height="15" alt="S"><span> Sistema</span></a>
-              <a id="app-config-btn" href="#"><img id="app-config-img" src="img/gear.svg" width="15" height="15" alt="C"><span> Configuração</span></a>
-            </aside>
-        </div>
+        <div id="app-side-menu-cover" class="sidemenu-cover"></div>
+        <aside id="app-side-menu" class="sidemenu-content">
+          <a id="app-close-btn" href="#" class="closebtn">&times;</a>
+          <a id="app-institution-btn" class="active" href="#"><img id="app-institution-img" src="img/building.svg" width="15" height="15" alt="I"><span> Institucional</span></a>
+          <a id="app-system-btn" href="#"><img id="app-system-img" src="img/computer.svg" width="15" height="15" alt="S"><span> Sistema</span></a>
+          <a id="app-config-btn" href="#"><img id="app-config-img" src="img/gear.svg" width="15" height="15" alt="C"><span> Configuração</span></a>
+        </aside>
         <section id="institution">
             <div id="institution-img"><span>JCompany</span></div>
             <div class="institution-topic"><img src="img/users.svg" width="15" height="15" alt="S"><h2>Sobre a empresa</h2><div class="gradient"></div></div>
@@ -62,7 +61,9 @@
         </section>
         <section id="system">
             <div id="app-loading" class="load-container"><div class="load"></div><span>Carregando...</span></div>
-            <iframe id="app-frame" src="" frameborder="0"></iframe>
+            <div id="app-connection-none" class="connection-container"><div class="connection"></div><span>Bem... Isso é constrangedor. Verifique sua conexão com a internet.</span></div>
+            <div id="app-tutorial" class="tutorial-container"><span>Acesse o menu configuração e cadastre uma URL!</span></div>
+            <iframe id="app-frame" src=""></iframe>
         </section>
         <section id="config">
             <div class="group">      

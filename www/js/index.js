@@ -27,6 +27,7 @@ var app = {
     onDeviceReady: function() {
         let hamburger = document.getElementById('app-hamburger-btn');
         let close = document.getElementById('app-close-btn');
+        let menuCover = document.getElementById('app-side-menu-cover');
         let institution = document.getElementById('app-institution-btn');
         let system = document.getElementById('app-system-btn');
         let config = document.getElementById('app-config-btn');
@@ -34,7 +35,8 @@ var app = {
         let frame = document.getElementById('app-frame');
 
         hamburger.addEventListener("click", openMenu, false);
-        close.addEventListener("click", closeMenu, false);   
+        close.addEventListener("click", closeMenu, false);
+        menuCover.addEventListener("click", closeMenu, false);     
         institution.addEventListener("click", changeToInstitution, false);
         system.addEventListener("click", changeToSystem, false);
         system.addEventListener("click", this.setSource , false);
@@ -49,6 +51,12 @@ var app = {
         var input = document.getElementById('app-link-config-input');
         var url = input.value;
         window.localStorage.setItem("url", url);
+        navigator.notification.alert(
+            'Nova URL cadastrada!', 
+            function(){},         
+            'Sucesso',            
+            'Ok'             
+        );
     },
 
     verifyStorage: function() {
@@ -63,22 +71,33 @@ var app = {
 
     setSource: function() {
         var load = document.getElementById('app-loading');
+        var connection = document.getElementById('app-connection-none');
+        var tutorial = document.getElementById('app-tutorial');
         var frame = document.getElementById('app-frame');
         var actual = frame.getAttribute("src");
         var url = window.localStorage.getItem("url");
 
-        if(url == null || url == "") {
-            //Mostrar tutorial no lugar de carregando
+        if(navigator.connection.type == Connection.NONE) {
             frame.style.display = "none";
-            load.style.display = "flex";
-        } else if(actual != url) {
-            frame.style.display = "none";
-            load.style.display = "flex";
-            window.localStorage.setItem("isLoaded", "0");
-            frame.setAttribute("src", url);
-        } else if (window.localStorage.getItem("isLoaded") == 1) {
             load.style.display = "none";
-            frame.style.display = "block";
+            tutorial.style.display = "none";
+            connection.style.display ="flex";
+        } else {
+            connection.style.display ="none";
+            tutorial.style.display = "none";
+            if(url == null || url == "") {
+                frame.style.display = "none";
+                load.style.display = "none";
+                tutorial.style.display = "flex";
+            } else if(actual != url) {
+                frame.style.display = "none";
+                load.style.display = "flex";
+                window.localStorage.setItem("isLoaded", "0");
+                frame.setAttribute("src", url);
+            } else if (window.localStorage.getItem("isLoaded") == 1) {
+                load.style.display = "none";
+                frame.style.display = "block";
+            }
         }
     },
 
@@ -89,7 +108,7 @@ var app = {
 
 app.initialize();
 var menu = document.getElementById('app-side-menu');
-var menuBackground = document.getElementById('app-side-menu-background');
+var menuCover = document.getElementById('app-side-menu-cover');
 var title = document.getElementById('app-page');
 
 var institution = document.getElementById('institution');
@@ -108,38 +127,13 @@ var frame = document.getElementById('app-frame');
 var load = document.getElementById('app-loading');
 
 function closeMenu() {
-    
-    var width = 75;
-    var id = setInterval(slideToClose, 5);
-    function slideToClose() {
-        if (width == 0) {
-            clearInterval(id);
-            menu.style.boxShadow = "none";
-            menuBackground.style.opacity = "0";
-            menuBackground.style.display = "none";
-        } else {
-            width--; 
-            menu.style.width = width + '%'; 
-        }
-    }
+    menu.setAttribute("class", "sidemenu-content");
+    menuCover.setAttribute("class", "sidemenu-cover");
 }
 
 function openMenu() {
-    
-    menu.style.boxShadow = "-6px 0px 6px 6px rgba(0,0,0,0.75)";
-    menuBackground.style.display = "block";
-    menuBackground.style.opacity = "1";
-
-    var width = 0;
-    var id = setInterval(slideToOpen, 5);
-    function slideToOpen() {
-        if (width >= 75) {
-            clearInterval(id);
-        } else {
-            width++; 
-            menu.style.width = width + '%'; 
-        }
-    }
+    menu.setAttribute("class", "sidemenu-content sidemenu-active");
+    menuCover.setAttribute("class", "sidemenu-cover sidemenu-cover-active");
 }
 
 function changeToInstitution() {

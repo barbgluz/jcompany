@@ -47,7 +47,6 @@ h1, h2, h3, h4, h5, h6 {
 header {
     background-color: #014989;
     -webkit-box-shadow: 0px -6px 6px 6px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px -6px 6px 6px rgba(0,0,0,0.75);
     box-shadow: 0px -6px 6px 6px rgba(0,0,0,0.75);
     height: 55px;
     left: 0px;
@@ -85,29 +84,39 @@ header > * {
     padding: 15px 0px 15px 0px;
 }
 
-.sidemenu {
+.sidemenu-cover {
     background-color: rgba(0,0,0,0.2);
     display: none;
-    height: 100%;
+    height: 100vh;
     left: 0px;
     opacity: 0;
     position: fixed;
-    transition: opacity 0.5s;
     top: 0px;
-    width: 100%;
+    width: 100vw;
+    -webkit-transition: opacity 0.8s;
+    transition: opacity 0.8s;
     z-index: 2;
+}
+
+.sidemenu-cover-active {
+    display: block;
+    opacity: 1;
 }
 
 .sidemenu-content {
     background-color: white;
-    height: 100%;
-    left: 0px;
+    height: 100vh;
+    left: -75vw;
     overflow-x: hidden;
     padding-top: 55px;
     position: fixed;
     top: 0px;
-    width: 0px;
+    width: 75vw;
     z-index: 3;
+    -webkit-transition: -webkit-transform 0.3s, -webkit-box-shadow 0.3s;
+    transition: -webkit-transform 0.3s, -webkit-box-shadow 0.3s;
+    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s, -webkit-transform 0.3s, -webkit-box-shadow 0.3s, box-shadow 0.3s;
 }
 
 .sidemenu-content a:not(:first-child) {
@@ -124,6 +133,13 @@ header > * {
 
 .sidemenu-content a span {
     margin-left: 8px;
+}
+
+.sidemenu-active {
+    -webkit-box-shadow: -6px 0px 6px 6px rgba(0,0,0,0.75);
+    box-shadow: -6px 0px 6px 6px rgba(0,0,0,0.75);
+    -webkit-transform: translateX(75vw);
+    transform: translateX(75vw);
 }
 
 .active {
@@ -217,12 +233,15 @@ section {
 }
 
 .load-container {
-    width: 100%;
-    height: 100%;
-    display: flex;
     align-items: center;
-    justify-content: center;
+    background-color: #EAEAEA;
+    display: flex;
     flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
 }
 
 .load {
@@ -231,8 +250,9 @@ section {
     background-repeat: no-repeat;
     -webkit-background-size: contain;
     background-size: contain;
-    width: 50px;
     height: 50px;
+    margin-bottom: 5px;
+    width: 50px;
     -webkit-animation: rotation 1.5s infinite;
     animation: rotation 1.5s infinite;
 }
@@ -247,10 +267,44 @@ section {
     to {transform: rotate(360deg);}
 }
 
+.connection-container {
+    align-items: center;
+    background-color: #EAEAEA;
+    display: none;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+}
+
+.connection {
+    background-image: url(../img/offline.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    -webkit-background-size: contain;
+    background-size: contain;
+    height: 100px;
+    margin-bottom: 5px;
+    width: 100px;
+}
+
+.tutorial-container {
+    align-items: center;
+    background-color: #EAEAEA;
+    display: none;
+    height: 100%;
+    padding: 10px;
+    text-align: center;
+    width: 100%;
+}
+
 #app-frame {
+    border: none;
+    display: none;
     height: 100%;
     width: 100%;
-    display: none;
 }
 
 .group {
