@@ -307,6 +307,16 @@ section {
     width: 100%;
 }
 
+#config > h1 {
+    margin-top: 30%;
+    color: #333;
+    text-align: center;
+}
+
+#config > p {
+    padding: 15px;
+}
+
 .group {
   margin-top: 35px;
   position: relative;
@@ -315,20 +325,24 @@ section {
 
 .input {
     border: none;
-    border-bottom: 1px solid lightgray;
     display: block;
-    padding: 10px 10px 10px 5px;
+    padding: 10px 10px 10px 20px;
     width: 100%;
+    background-color: #f3f3f3;
+    border-radius: 25px;
+    height: 46px;
 }
 
 .input:focus {
   outline: none;
+  padding-left: 30px;
 }
 
 .input:focus ~ label, .input:valid ~ label {
   top: -20px;
   font-size: 14px;
   color: #1f1f1f;
+  outline: none;
 }
 
 label {
@@ -337,37 +351,11 @@ label {
   font-weight: normal;
   position: absolute;
   pointer-events: none;
-  left: 5px;
-  top: 5px;
+  left: 30px;
+  top: 15px;
   transition: 0.4s ease all;
   -moz-transition: 0.4s ease all;
   -webkit-transition: 0.4s ease all;
-}
-
-.bar {
-  position: relative;
-  display: block;
-  width: 100%;
-}
-
-.bar:before, .bar:after {
-  content: '';
-  height: 2px;
-  width: 0px;
-  bottom: 0px;
-  position: absolute;
-  background: #014989;
-  transition: 0.4s ease all;
-  -moz-transition: 0.4s ease all;
-  -webkit-transition: 0.4s ease all;
-}
-
-.bar:before {
-  left: 50%;
-}
-
-.bar:after {
-  right: 50%;
 }
 
 .input:focus ~ .bar:before, .input:focus ~ .bar:after {
@@ -375,13 +363,13 @@ label {
 }
 
 #config a {
-    background-color: lightgray;
-    border-radius: 1px;
     color: #014989;
     display: block;
-    margin-top: 35px;
     padding: 15px;
     text-align: center;
     text-decoration: none;
     width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
 }
