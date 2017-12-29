@@ -50,13 +50,31 @@ var app = {
     localStorage: function() {
         var input = document.getElementById('app-link-config-input');
         var url = input.value;
-        window.localStorage.setItem("url", url);
-        navigator.notification.alert(
-            'Nova URL cadastrada!', 
-            function(){},         
-            'Sucesso',            
-            'Ok'             
-        );
+        var allowedUrls = {
+            "http://sgloc.com.br" : true,
+            "http://sgloc.com.br/" : true,
+            "http://www.jcompanyti.com.br" : true,
+            "http://www.jcompanyti.com.br/" : true,
+        }
+
+        if(allowedUrls[url] == true) {
+            window.localStorage.setItem("url", url);
+            navigator.notification.alert(
+                'URL cadastrada!', 
+                function(){},         
+                'Sucesso',            
+                'Ok'             
+            );
+        } else {
+            window.localStorage.setItem("url", "");
+            input.value = "";
+            navigator.notification.alert(
+                'URL inserida não é permitida ou não é absoluta (http://www.example.com/).', 
+                function(){},         
+                'Erro',            
+                'Ok'             
+            );
+        }
     },
 
     verifyStorage: function() {
