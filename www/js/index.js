@@ -27,25 +27,93 @@ var app = {
     onDeviceReady: function() {
         let hamburger = document.getElementById('app-hamburger-btn');
         let close = document.getElementById('app-close-btn');
+        let menuCover = document.getElementById('app-side-menu-cover');
         let institution = document.getElementById('app-institution-btn');
         let system = document.getElementById('app-system-btn');
         let config = document.getElementById('app-config-btn');
+        let storage = document.getElementById('app-link-config-btn');
+        let frame = document.getElementById('app-frame');
 
         hamburger.addEventListener("click", openMenu, false);
-        close.addEventListener("click", closeMenu, false);   
+        close.addEventListener("click", closeMenu, false);
+        menuCover.addEventListener("click", closeMenu, false);     
         institution.addEventListener("click", changeToInstitution, false);
         system.addEventListener("click", changeToSystem, false);
+        system.addEventListener("click", this.setSource , false);
         config.addEventListener("click", changeToConfig, false);
+        config.addEventListener("click", this.verifyStorage, false);
+        storage.addEventListener("click", this.localStorage, false);
+        frame.addEventListener("load", hideLoading, false);
+        frame.addEventListener("load", this.setStatus, false);
     },
+
+    localStorage: function() {
+        var input = document.getElementById('app-link-config-input');
+        var url = input.value;
+        window.localStorage.setItem("url", url);
+        navigator.notification.alert(
+            'Nova URL cadastrada!', 
+            function(){},         
+            'Sucesso',            
+            'Ok'             
+        );
+    },
+
+    verifyStorage: function() {
+        var input = document.getElementById('app-link-config-input');
+        var url = window.localStorage.getItem("url");
+        if(url == null) {
+            input.value = "";
+        } else {
+            input.value = url;
+        }
+    },
+
+    setSource: function() {
+        var load = document.getElementById('app-loading');
+        var connection = document.getElementById('app-connection-none');
+        var tutorial = document.getElementById('app-tutorial');
+        var frame = document.getElementById('app-frame');
+        var actual = frame.getAttribute("src");
+        var url = window.localStorage.getItem("url");
+
+        if(navigator.connection.type == Connection.NONE) {
+            frame.style.display = "none";
+            load.style.display = "none";
+            tutorial.style.display = "none";
+            connection.style.display ="flex";
+        } else {
+            connection.style.display ="none";
+            tutorial.style.display = "none";
+            if(url == null || url == "") {
+                frame.style.display = "none";
+                load.style.display = "none";
+                tutorial.style.display = "flex";
+            } else if(actual != url) {
+                frame.style.display = "none";
+                load.style.display = "flex";
+                window.localStorage.setItem("isLoaded", "0");
+                frame.setAttribute("src", url);
+            } else if (window.localStorage.getItem("isLoaded") == 1) {
+                load.style.display = "none";
+                frame.style.display = "block";
+            }
+        }
+    },
+
+    setStatus: function() {
+        window.localStorage.setItem("isLoaded", "1");
+    } 
 };
 
 app.initialize();
 var menu = document.getElementById('app-side-menu');
-var institution = document.getElementById('institution');
+var menuCover = document.getElementById('app-side-menu-cover');
+var title = document.getElementById('app-page');
 
+var institution = document.getElementById('institution');
 var system = document.getElementById('system');
 var config = document.getElementById('config');
-var title = document.getElementById('app-page');
 
 var institutionBtn = document.getElementById('app-institution-btn');
 var systemBtn = document.getElementById('app-system-btn');
@@ -55,17 +123,21 @@ var institutionImg = document.getElementById('app-institution-img');
 var systemImg = document.getElementById('app-system-img');
 var configImg = document.getElementById('app-config-img');
 
+var frame = document.getElementById('app-frame');
+var load = document.getElementById('app-loading');
+
 function closeMenu() {
-    menu.style.width = "0px";
-    menu.style.boxShadow = "none";
+    menu.setAttribute("class", "sidemenu-content");
+    menuCover.setAttribute("class", "sidemenu-cover");
 }
 
 function openMenu() {
-    menu.style.width = "75%";
-    menu.style.boxShadow = "-6px 0px 6px 6px rgba(0,0,0,0.75)";
+    menu.setAttribute("class", "sidemenu-content sidemenu-active");
+    menuCover.setAttribute("class", "sidemenu-cover sidemenu-cover-active");
 }
 
 function changeToInstitution() {
+    closeMenu();        
     systemBtn.setAttribute("class", "");
     configBtn.setAttribute("class", "");
     institutionBtn.setAttribute("class", "active");
@@ -73,10 +145,10 @@ function changeToInstitution() {
     config.style.display = "none";
     institution.style.display = "block";
     title.innerHTML = "Institucional";
-    closeMenu();        
 }
 
 function changeToSystem() {
+    closeMenu();
     institutionBtn.setAttribute("class", "");
     configBtn.setAttribute("class", "");
     systemBtn.setAttribute("class", "active");
@@ -84,10 +156,10 @@ function changeToSystem() {
     config.style.display = "none";
     system.style.display = "block";
     title.innerHTML = "Sistema";
-    closeMenu();
 }
 
 function changeToConfig() {
+    closeMenu();
     institutionBtn.setAttribute("class", "");
     systemBtn.setAttribute("class", "");
     configBtn.setAttribute("class", "active");
@@ -95,5 +167,9 @@ function changeToConfig() {
     system.style.display = "none";
     config.style.display = "block";
     title.innerHTML = "Configuração";
-    closeMenu();
+}
+
+function hideLoading() {
+    load.style.display = "none";
+    frame.style.display = "block";
 }
