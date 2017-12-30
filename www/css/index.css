@@ -41,7 +41,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: #1f1f1f;
+    color: #444;
 }
 
 header {
@@ -250,9 +250,9 @@ section {
     background-repeat: no-repeat;
     -webkit-background-size: contain;
     background-size: contain;
-    height: 50px;
+    height: 80px;
     margin-bottom: 5px;
-    width: 50px;
+    width: 80px;
     -webkit-animation: rotation 1.5s infinite;
     animation: rotation 1.5s infinite;
 }
@@ -383,33 +383,31 @@ section {
 
 .tutorial-body > * {
     font-size: 10px;
-    margin-top: 10px;
 }
 
 .tutorial-body h2 {
-    font-size: 10px;
-    margin-top: 15px;
+    margin-top: 20px;
 }
 
 .tutorial-body p {
     padding: 10px;
 }
 
-.tutorial-body div {
+.tutorial-body > div {
     align-items: center;
     background-color: #dadada;
     border-radius: 15px;
     display: flex;
     height: 30px;
     justify-content: flex-start;
-    margin-left: 10px;
-    margin-right: 10px;
-    padding: 5px;
+    margin: 10px 10px 0px 10px;
+    padding: 5px 10px;
 }
 
 .tutorial-body span {
-    text-transform: uppercase;
     display: block;
+    margin-top: 20px;
+    text-transform: uppercase;
 }
 
 #app-frame {
@@ -420,13 +418,13 @@ section {
 }
 
 #config > h1 {
-    margin-top: 30%;
-    color: #333;
+    margin-top: 10px;
     text-align: center;
 }
 
 #config > p {
-    padding: 15px;
+    padding-top: 15px;
+    text-align: center;
 }
 
 .group {
@@ -438,7 +436,7 @@ section {
 .input {
     border: none;
     display: block;
-    padding: 10px 10px 10px 20px;
+    padding: 10px 10px 10px 30px;
     width: 100%;
     background-color: #f3f3f3;
     border-radius: 25px;
@@ -446,28 +444,27 @@ section {
 }
 
 .input:focus {
-  outline: none;
-  padding-left: 30px;
+    outline: none;
 }
 
 .input:focus ~ label, .input:valid ~ label {
-  top: -20px;
-  font-size: 14px;
-  color: #1f1f1f;
-  outline: none;
+    top: -20px;
+    font-size: 14px;
+    color: #1f1f1f;
+    outline: none;
 }
 
 label {
-  color: gray;
-  font-size: 14px;
-  font-weight: normal;
-  position: absolute;
-  pointer-events: none;
-  left: 30px;
-  top: 15px;
-  transition: 0.4s ease all;
-  -moz-transition: 0.4s ease all;
-  -webkit-transition: 0.4s ease all;
+    color: gray;
+    font-size: 14px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 30px;
+    top: 15px;
+    transition: 0.4s ease all;
+    -moz-transition: 0.4s ease all;
+    -webkit-transition: 0.4s ease all;
 }
 
 #config a {
@@ -481,3 +478,21 @@ label {
     letter-spacing: 1px;
     font-weight: 600;
 }
+
+.wave {
+    -webkit-background-size: contain;
+    background-image: url(../img/wave.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    bottom: 20px;
+    height: 100px;
+    left: 0px;
+    position: absolute;   
+    width: 100%;
+    z-index: 1;
+}
+
+.hide-wave {
+    display: none;
+} 

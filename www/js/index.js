@@ -33,6 +33,7 @@ var app = {
         let config = document.getElementById('app-config-btn');
         let storage = document.getElementById('app-link-config-btn');
         let frame = document.getElementById('app-frame');
+        let input = document.getElementById('app-link-config-input');
 
         hamburger.addEventListener("click", openMenu, false);
         close.addEventListener("click", closeMenu, false);
@@ -45,6 +46,8 @@ var app = {
         storage.addEventListener("click", this.localStorage, false);
         frame.addEventListener("load", hideLoading, false);
         frame.addEventListener("load", this.setStatus, false);
+        input.addEventListener("focus", hideWave, false);
+        input.addEventListener("blur", showWave, false);
     },
 
     localStorage: function() {
@@ -60,7 +63,7 @@ var app = {
         if(allowedUrls[url] == true) {
             window.localStorage.setItem("url", url);
             navigator.notification.alert(
-                'URL cadastrada!', 
+                'Link cadastrado!', 
                 function(){},         
                 'Sucesso',            
                 'Ok'             
@@ -69,7 +72,7 @@ var app = {
             window.localStorage.setItem("url", "");
             input.value = "";
             navigator.notification.alert(
-                'URL inserida não é permitida ou não é absoluta (http://www.example.com/).', 
+                'Link inserido não é permitido ou não é absoluto.', 
                 function(){},         
                 'Erro',            
                 'Ok'             
@@ -143,6 +146,7 @@ var configImg = document.getElementById('app-config-img');
 
 var frame = document.getElementById('app-frame');
 var load = document.getElementById('app-loading');
+var wave = document.getElementById('app-wave');
 
 function closeMenu() {
     menu.setAttribute("class", "sidemenu-content");
@@ -190,4 +194,12 @@ function changeToConfig() {
 function hideLoading() {
     load.style.display = "none";
     frame.style.display = "block";
+}
+
+function hideWave() {
+    wave.setAttribute("class", "wave hide-wave");
+}
+
+function showWave() {
+    setTimeout(function() {wave.setAttribute("class", "wave");} , 100);
 }
