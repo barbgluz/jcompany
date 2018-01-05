@@ -41,11 +41,11 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-    color: #1f1f1f;
+    color: #444;
 }
 
 header {
-    background-color: #014989;
+    background-color: #27313B;
     -webkit-box-shadow: 0px -6px 6px 6px rgba(0,0,0,0.75);
     box-shadow: 0px -6px 6px 6px rgba(0,0,0,0.75);
     height: 55px;
@@ -192,7 +192,7 @@ section {
     z-index: -1;
 }
 
-#institution-img span {
+#institution-img > #overlay > span {
     text-shadow: 0px 0px 11px rgba(0, 0, 0, 0.5);
     font-size: 2.5em;
     color: white;
@@ -209,19 +209,16 @@ section {
     padding-bottom: 3px;
 }
 
-.institution-topic h2 {
-    font-size: 1em;
-    margin-left: 10px;
-    text-transform: uppercase;
+#overlay {
+    background-color: rgba(0, 0, 0, .5);
+    width: 100%;
+    height: 100%;
+    text-align: center;
 }
 
-.gradient {
-    background: linear-gradient(to right, #014989, #31b0d5);
-    bottom: 0px;
-    height: 1px;
-    left: 0px;
-    position: absolute;
-    width: 100%;
+.institution-topic h2 {
+    font-size: 1em;
+    text-transform: uppercase;
 }
 
 #system, #config {
@@ -250,9 +247,9 @@ section {
     background-repeat: no-repeat;
     -webkit-background-size: contain;
     background-size: contain;
-    height: 50px;
+    height: 80px;
     margin-bottom: 5px;
-    width: 50px;
+    width: 80px;
     -webkit-animation: rotation 1.5s infinite;
     animation: rotation 1.5s infinite;
 }
@@ -293,11 +290,121 @@ section {
 .tutorial-container {
     align-items: center;
     background-color: #EAEAEA;
+    flex-direction: column;
     display: none;
     height: 100%;
-    padding: 10px;
+    justify-content: flex-end;
+    padding: 10px 10px 0 10px;
     text-align: center;
     width: 100%;
+}
+
+.tutorial-description {
+    margin-top: 20px;
+}
+
+.phone {
+    background-color: white;
+    border-radius: 30px 30px 0px 0px;
+    border: 2px solid gray;
+    border-bottom: none;
+    height: 70%;
+    margin: 30px 0px 0px 0px;
+    padding: 35px 15px 0px 15px;
+    width: 90%;
+    position: relative;
+}
+
+.phone-head {
+    background-color: white;
+    height: 10%;
+}
+
+.speaker {
+    border-radius: 5px;
+    border: 2px solid gray;
+    display: block;
+    height: 10px;
+    margin: 0 auto;
+    width: 50px;
+}
+
+.inner-phone {
+    background-color: #EAEAEA;
+    border-radius: 2px 2px 0px 0px;
+    border: 2px solid gray;
+    border-bottom: none;
+    height: 90%;
+    width: 100%;
+}
+
+.status-bar {
+    background-color: gray;
+    color: white;
+    font-size: 0.7em;
+    height: 14px;
+    text-align: center;
+}
+
+.header-bar {
+    height: 30px;
+    padding: 10px;
+    background-color: darkgray;
+}
+
+.header-bar h1 {
+    color: white;
+    font-size: 10px;
+}
+
+.header-bar > * {
+    display: inline;
+    float: left;
+}
+
+.small-hamburger {
+    margin-right: 10px;
+    width: 20px;
+}
+
+.small-hamburger > * {
+    background-color: white;
+    border-radius: 1px;
+    width: 100%;
+    height: 2px;
+}
+
+.small-hamburger > *:not(:last-child) {
+    margin-bottom: 2px;
+}
+
+.tutorial-body > * {
+    font-size: 10px;
+}
+
+.tutorial-body h2 {
+    margin-top: 20px;
+}
+
+.tutorial-body p {
+    padding: 10px;
+}
+
+.tutorial-body > div {
+    align-items: center;
+    background-color: #dadada;
+    border-radius: 15px;
+    display: flex;
+    height: 30px;
+    justify-content: flex-start;
+    margin: 10px 10px 0px 10px;
+    padding: 5px 10px;
+}
+
+.tutorial-body span {
+    display: block;
+    margin-top: 15px;
+    text-transform: uppercase;
 }
 
 #app-frame {
@@ -307,81 +414,82 @@ section {
     width: 100%;
 }
 
+#config > h1 {
+    margin-top: 10px;
+    text-align: center;
+}
+
+#config > p {
+    padding-top: 15px;
+    text-align: center;
+}
+
 .group {
-  margin-top: 35px;
-  position: relative;
-  width: 100%;
+    margin-top: 35px;
+    position: relative;
+    width: 100%;
 }
 
 .input {
     border: none;
-    border-bottom: 1px solid lightgray;
     display: block;
-    padding: 10px 10px 10px 5px;
+    padding: 10px 10px 10px 30px;
     width: 100%;
+    background-color: #f3f3f3;
+    border-radius: 25px;
+    height: 46px;
 }
 
 .input:focus {
-  outline: none;
+    outline: none;
 }
 
 .input:focus ~ label, .input:valid ~ label {
-  top: -20px;
-  font-size: 14px;
-  color: #1f1f1f;
+    top: -20px;
+    font-size: 14px;
+    color: #1f1f1f;
+    outline: none;
 }
 
 label {
-  color: gray;
-  font-size: 14px;
-  font-weight: normal;
-  position: absolute;
-  pointer-events: none;
-  left: 5px;
-  top: 5px;
-  transition: 0.4s ease all;
-  -moz-transition: 0.4s ease all;
-  -webkit-transition: 0.4s ease all;
-}
-
-.bar {
-  position: relative;
-  display: block;
-  width: 100%;
-}
-
-.bar:before, .bar:after {
-  content: '';
-  height: 2px;
-  width: 0px;
-  bottom: 0px;
-  position: absolute;
-  background: #014989;
-  transition: 0.4s ease all;
-  -moz-transition: 0.4s ease all;
-  -webkit-transition: 0.4s ease all;
-}
-
-.bar:before {
-  left: 50%;
-}
-
-.bar:after {
-  right: 50%;
-}
-
-.input:focus ~ .bar:before, .input:focus ~ .bar:after {
-  width: 50%;
+    color: gray;
+    font-size: 14px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 30px;
+    top: 15px;
+    transition: 0.4s ease all;
+    -moz-transition: 0.4s ease all;
+    -webkit-transition: 0.4s ease all;
 }
 
 #config a {
-    background-color: lightgray;
-    border-radius: 1px;
-    color: #014989;
+    color: #27313B;
     display: block;
-    margin-top: 35px;
     padding: 15px;
     text-align: center;
     text-decoration: none;
     width: 100%;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.wave {
+    -webkit-background-size: contain;
+    background-image: url(../img/wave.svg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    bottom: 20px;
+    height: 100px;
+    left: 0px;
+    position: absolute;
+    width: 100%;
+    z-index: 1;
+}
+
+.hide-wave {
+    display: none;
 }
