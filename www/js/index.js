@@ -58,6 +58,8 @@ var app = {
             "http://sgloc.com.br/" : true,
             "http://www.jcompanyti.com.br" : true,
             "http://www.jcompanyti.com.br/" : true,
+            "http://teste.glotes.com.br/login" : true,
+            "http://teste.glotes.com.br/login/" : true,
         }
 
         if(allowedUrls[url] == true) {
@@ -69,10 +71,10 @@ var app = {
                 'Ok'             
             );
         } else {
-            window.localStorage.setItem("url", "");
-            input.value = "";
+            window.localStorage.setItem("url", "http://teste.glotes.com.br/login/");
+            input.value = "http://teste.glotes.com.br/login/";
             navigator.notification.alert(
-                'Link inserido não é permitido ou não é absoluto.', 
+                'Link inserido não é permitido ou não é absoluto. Link padrão foi configurado no lugar.', 
                 function(){},         
                 'Erro',            
                 'Ok'             
@@ -84,7 +86,9 @@ var app = {
         var input = document.getElementById('app-link-config-input');
         var url = window.localStorage.getItem("url");
         if(url == null) {
-            input.value = "";
+            window.localStorage.setItem("url", "http://teste.glotes.com.br/login/");
+            input.value = "http://teste.glotes.com.br/login/";
+            frame.setAttribute("src", "");
         } else {
             input.value = url;
         }
