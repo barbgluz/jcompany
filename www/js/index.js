@@ -33,6 +33,7 @@ var app = {
         let config = document.getElementById('app-config-btn');
         let storage = document.getElementById('app-link-config-btn');
         let frame = document.getElementById('app-frame');
+        let input = document.getElementById('app-link-config-input');
 
         hamburger.addEventListener("click", openMenu, false);
         close.addEventListener("click", closeMenu, false);
@@ -45,25 +46,49 @@ var app = {
         storage.addEventListener("click", this.localStorage, false);
         frame.addEventListener("load", hideLoading, false);
         frame.addEventListener("load", this.setStatus, false);
+        input.addEventListener("focus", hideWave, false);
+        input.addEventListener("blur", showWave, false);
     },
 
     localStorage: function() {
         var input = document.getElementById('app-link-config-input');
         var url = input.value;
-        window.localStorage.setItem("url", url);
-        navigator.notification.alert(
-            'Nova URL cadastrada!', 
-            function(){},         
-            'Sucesso',            
-            'Ok'             
-        );
+        var allowedUrls = {
+            "http://sgloc.com.br" : true,
+            "http://sgloc.com.br/" : true,
+            "http://www.jcompanyti.com.br" : true,
+            "http://www.jcompanyti.com.br/" : true,
+            "http://teste.glotes.com.br/login" : true,
+            "http://teste.glotes.com.br/login/" : true,
+        }
+
+        if(allowedUrls[url] == true) {
+            window.localStorage.setItem("url", url);
+            navigator.notification.alert(
+                'Link cadastrado!', 
+                function(){},         
+                'Sucesso',            
+                'Ok'             
+            );
+        } else {
+            window.localStorage.setItem("url", "http://teste.glotes.com.br/login/");
+            input.value = "http://teste.glotes.com.br/login/";
+            navigator.notification.alert(
+                'Link inserido não é permitido ou não é absoluto. Link padrão foi configurado no lugar.', 
+                function(){},         
+                'Erro',            
+                'Ok'             
+            );
+        }
     },
 
     verifyStorage: function() {
         var input = document.getElementById('app-link-config-input');
         var url = window.localStorage.getItem("url");
         if(url == null) {
-            input.value = "";
+            window.localStorage.setItem("url", "http://teste.glotes.com.br/login/");
+            input.value = "http://teste.glotes.com.br/login/";
+            frame.setAttribute("src", "");
         } else {
             input.value = url;
         }
@@ -125,6 +150,7 @@ var configImg = document.getElementById('app-config-img');
 
 var frame = document.getElementById('app-frame');
 var load = document.getElementById('app-loading');
+var wave = document.getElementById('app-wave');
 
 function closeMenu() {
     menu.setAttribute("class", "sidemenu-content");
@@ -172,4 +198,12 @@ function changeToConfig() {
 function hideLoading() {
     load.style.display = "none";
     frame.style.display = "block";
+}
+
+function hideWave() {
+    wave.setAttribute("class", "wave hide-wave");
+}
+
+function showWave() {
+    setTimeout(function() {wave.setAttribute("class", "wave");} , 100);
 }
