@@ -45,26 +45,18 @@ var app = {
         config.addEventListener("click", this.verifyStorage, false);
         storage.addEventListener("click", this.localStorage, false);
         frame.addEventListener("load", hideLoading, false);
-        frame.addEventListener("load", this.setStatus, false);
+        frame.addEventListener("load", this.setStatus, false);frame
+        frame.addEventListener("error", this.showError, false);
         input.addEventListener("focus", hideWave, false);
         input.addEventListener("blur", showWave, false);
     },
 
     localStorage: function() {
+        var er = new RegExp('http[s]?://[a-z|0-9]*\.glotes\.com\.br[/]?|http://sgloc.com.br[/]?');
         var input = document.getElementById('app-link-config-input');
         var url = input.value;
-        var allowedUrls = {
-            "http://sgloc.com.br" : true,
-            "http://sgloc.com.br/" : true,
-            "http://www.jcompanyti.com.br" : true,
-            "http://www.jcompanyti.com.br/" : true,
-            "http://teste.glotes.com.br/login" : true,
-            "http://teste.glotes.com.br/login/" : true,
-            "http://teste.glotes.com.br" : true,
-            "http://teste.glotes.com.br/" : true,
-        }
 
-        if(allowedUrls[url] == true) {
+        if(er.test(url)) {
             window.localStorage.setItem("url", url);
             navigator.notification.alert(
                 'Link cadastrado!', 
@@ -73,8 +65,8 @@ var app = {
                 'Ok'             
             );
         } else {
-            window.localStorage.setItem("url", "http://teste.glotes.com.br/");
-            input.value = "http://teste.glotes.com.br/";
+            window.localStorage.setItem("url", "http://teste.glotes.com.br");
+            input.value = "http://teste.glotes.com.br";
             navigator.notification.alert(
                 'Link inserido não é permitido ou não é absoluto. Link padrão foi configurado no lugar.', 
                 function(){},         
@@ -88,8 +80,8 @@ var app = {
         var input = document.getElementById('app-link-config-input');
         var url = window.localStorage.getItem("url");
         if(url == null) {
-            window.localStorage.setItem("url", "http://teste.glotes.com.br/");
-            input.value = "http://teste.glotes.com.br/";
+            window.localStorage.setItem("url", "http://teste.glotes.com.br");
+            input.value = "http://teste.glotes.com.br";
             frame.setAttribute("src", "");
         } else {
             input.value = url;
@@ -112,7 +104,7 @@ var app = {
         } else {
             connection.style.display ="none";
             tutorial.style.display = "none";
-            if(url == null || url == "") {
+            if(url == null || url == "" || url == undefined) {
                 frame.style.display = "none";
                 load.style.display = "none";
                 tutorial.style.display = "flex";
