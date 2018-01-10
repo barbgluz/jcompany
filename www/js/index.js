@@ -46,13 +46,12 @@ var app = {
         storage.addEventListener("click", this.localStorage, false);
         frame.addEventListener("load", hideLoading, false);
         frame.addEventListener("load", this.setStatus, false);frame
-        frame.addEventListener("error", this.showError, false);
         input.addEventListener("focus", hideWave, false);
         input.addEventListener("blur", showWave, false);
     },
 
     localStorage: function() {
-        var er = new RegExp('http[s]?://[a-z|0-9]*\.glotes\.com\.br[/]?|http://sgloc.com.br[/]?');
+        var er = new RegExp('http[s]?://[a-z|0-9]*\.glotes\.com\.br[/]?|http[s]?://sgloc.com.br[/]?');
         var input = document.getElementById('app-link-config-input');
         var url = input.value;
 
