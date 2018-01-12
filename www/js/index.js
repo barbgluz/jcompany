@@ -51,9 +51,13 @@ var app = {
     },
 
     localStorage: function() {
-        var er = new RegExp('http[s]?://[a-z|0-9]*\.glotes\.com\.br[/]?|http[s]?://sgloc.com.br[/]?');
+        var er = new RegExp('[a-z|0-9]+\\.glotes\\.com\\.br$|sgloc.com.br$');
         var input = document.getElementById('app-link-config-input');
         var url = input.value;
+
+        if(!(url.substring(0,7) == "http://" || url.substring(0,8) == "https://")) {
+            url = "http://" + url; 
+        }
 
         if(er.test(url)) {
             window.localStorage.setItem("url", url);
@@ -65,9 +69,9 @@ var app = {
             );
         } else {
             window.localStorage.setItem("url", "http://teste.glotes.com.br");
-            input.value = "http://teste.glotes.com.br";
+            input.value = "teste.glotes.com.br";
             navigator.notification.alert(
-                'Link inserido não é permitido ou não é absoluto. Link padrão foi configurado no lugar.', 
+                'Link inserido não é permitido. Link padrão foi configurado no lugar.', 
                 function(){},         
                 'Erro',            
                 'Ok'             
@@ -80,10 +84,10 @@ var app = {
         var url = window.localStorage.getItem("url");
         if(url == null) {
             window.localStorage.setItem("url", "http://teste.glotes.com.br");
-            input.value = "http://teste.glotes.com.br";
+            input.value = "teste.glotes.com.br";
             frame.setAttribute("src", "");
         } else {
-            input.value = url;
+            input.value = url.substring(7);
         }
     },
 
