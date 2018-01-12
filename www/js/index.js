@@ -25,6 +25,7 @@ var app = {
 
     // deviceready Event Handler
     onDeviceReady: function() {
+        this.setSource();
         let hamburger = document.getElementById('app-hamburger-btn');
         let close = document.getElementById('app-close-btn');
         let menuCover = document.getElementById('app-side-menu-cover');
@@ -40,7 +41,7 @@ var app = {
         menuCover.addEventListener("click", closeMenu, false);     
         institution.addEventListener("click", changeToInstitution, false);
         system.addEventListener("click", changeToSystem, false);
-        system.addEventListener("click", this.setSource , false);
+        system.addEventListener("click", this.setSource, false);
         config.addEventListener("click", changeToConfig, false);
         config.addEventListener("click", this.verifyStorage, false);
         storage.addEventListener("click", this.localStorage, false);
