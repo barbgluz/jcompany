@@ -51,7 +51,7 @@ var app = {
     },
 
     localStorage: function() {
-        var er = new RegExp('[a-z|0-9]+\\.glotes\\.com\\.br$|sgloc.com.br$');
+        var er = new RegExp('[a-z|0-9]+\\.glotes\\.com\\.br$|sgloc\\.com\\.br$');
         var input = document.getElementById('app-link-config-input');
         var url = input.value;
 
