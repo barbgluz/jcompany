@@ -69,8 +69,8 @@ var app = {
                 'Ok'             
             );
         } else {
-            window.localStorage.setItem("url", "http://teste.glotes.com.br");
-            input.value = "teste.glotes.com.br";
+            window.localStorage.setItem("url", "http://brasil.glotes.com.br");
+            input.value = "brasil.glotes.com.br";
             navigator.notification.alert(
                 'Link inserido não é permitido. Link padrão foi configurado no lugar.', 
                 function(){},         
@@ -84,8 +84,8 @@ var app = {
         var input = document.getElementById('app-link-config-input');
         var url = window.localStorage.getItem("url");
         if(url == null) {
-            window.localStorage.setItem("url", "http://teste.glotes.com.br");
-            input.value = "teste.glotes.com.br";
+            window.localStorage.setItem("url", "http://brasil.glotes.com.br");
+            input.value = "brasil.glotes.com.br";
             frame.setAttribute("src", "");
         } else {
             input.value = url.substring(7);
