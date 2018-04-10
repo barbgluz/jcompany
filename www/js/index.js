@@ -38,7 +38,7 @@ var app = {
 
         hamburger.addEventListener("click", openMenu, false);
         close.addEventListener("click", closeMenu, false);
-        menuCover.addEventListener("click", closeMenu, false);     
+        menuCover.addEventListener("click", closeMenu, false);
         institution.addEventListener("click", changeToInstitution, false);
         system.addEventListener("click", changeToSystem, false);
         system.addEventListener("click", this.setSource, false);
@@ -57,25 +57,25 @@ var app = {
         var url = input.value;
 
         if(!(url.substring(0,7) == "http://" || url.substring(0,8) == "https://")) {
-            url = "http://" + url; 
+            url = "http://" + url;
         }
 
         if(er.test(url)) {
             window.localStorage.setItem("url", url);
             navigator.notification.alert(
-                'Link cadastrado!', 
-                function(){},         
-                'Sucesso',            
-                'Ok'             
+                'Link cadastrado!',
+                function(){},
+                'Sucesso',
+                'Ok'
             );
         } else {
-            window.localStorage.setItem("url", "http://brasil.glotes.com.br");
-            input.value = "brasil.glotes.com.br";
+            window.localStorage.setItem("url", "http://avaliacao.glotes.com.br");
+            input.value = "avaliacao.glotes.com.br";
             navigator.notification.alert(
-                'Link inserido não é permitido. Link padrão foi configurado no lugar.', 
-                function(){},         
-                'Erro',            
-                'Ok'             
+                'Link inserido não é permitido. Link padrão foi configurado no lugar.',
+                function(){},
+                'Erro',
+                'Ok'
             );
         }
     },
@@ -84,8 +84,8 @@ var app = {
         var input = document.getElementById('app-link-config-input');
         var url = window.localStorage.getItem("url");
         if(url == null) {
-            window.localStorage.setItem("url", "http://brasil.glotes.com.br");
-            input.value = "brasil.glotes.com.br";
+            window.localStorage.setItem("url", "http://avaliacao.glotes.com.br");
+            input.value = "avaliacao.glotes.com.br";
             frame.setAttribute("src", "");
         } else {
             input.value = url.substring(7);
@@ -126,7 +126,7 @@ var app = {
 
     setStatus: function() {
         window.localStorage.setItem("isLoaded", "1");
-    } 
+    }
 };
 
 app.initialize();
@@ -161,7 +161,7 @@ function openMenu() {
 }
 
 function changeToInstitution() {
-    closeMenu();        
+    closeMenu();
     systemBtn.setAttribute("class", "");
     configBtn.setAttribute("class", "");
     institutionBtn.setAttribute("class", "active");
