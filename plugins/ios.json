@@ -21,6 +21,9 @@
     },
     "cordova-plugin-inappbrowser": {
       "PACKAGE_NAME": "com.jcompanyti.jcompany"
+    },
+    "cordova-plugin-statusbar": {
+      "PACKAGE_NAME": "com.jcompanyti.jcompany"
     }
   },
   "dependent_plugins": {}

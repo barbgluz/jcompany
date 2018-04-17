@@ -46,7 +46,7 @@ var app = {
         config.addEventListener("click", this.verifyStorage, false);
         storage.addEventListener("click", this.localStorage, false);
         frame.addEventListener("load", hideLoading, false);
-        frame.addEventListener("load", this.setStatus, false);frame
+        frame.addEventListener("load", this.setStatus, false);
         input.addEventListener("focus", hideWave, false);
         input.addEventListener("blur", showWave, false);
     },
@@ -69,8 +69,8 @@ var app = {
                 'Ok'             
             );
         } else {
-            window.localStorage.setItem("url", "http://brasil.glotes.com.br");
-            input.value = "brasil.glotes.com.br";
+            window.localStorage.setItem("url", "http://avaliacao.glotes.com.br");
+            input.value = "avaliacao.glotes.com.br";
             navigator.notification.alert(
                 'Link inserido não é permitido. Link padrão foi configurado no lugar.', 
                 function(){},         
@@ -84,8 +84,8 @@ var app = {
         var input = document.getElementById('app-link-config-input');
         var url = window.localStorage.getItem("url");
         if(url == null) {
-            window.localStorage.setItem("url", "http://brasil.glotes.com.br");
-            input.value = "brasil.glotes.com.br";
+            window.localStorage.setItem("url", "http://avaliacao.glotes.com.br");
+            input.value = "avaliacao.glotes.com.br";
             frame.setAttribute("src", "");
         } else {
             input.value = url.substring(7);
